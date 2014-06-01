@@ -1,13 +1,24 @@
 cmake_minimum_required(VERSION 2.8.11)
 
+include("${CMAKE_INSTALL_PREFIX}/lib/blib-targets.cmake")
+
 add_library(a lib.cpp)
 
+# add link dependency so cmake knows about the dependency 
+# and includes 'b' interface files, it should also percolate up to 
+# the app folder
+#
+# The include directory could be manually added with
+# $<TARGET_PROPERTY:b,INTERFACE_INCLUDE_DIRECTORIES>  
+#
+target_link_libraries(a b)
+
 target_include_directories(a 
-   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-   PRIVATE ${CMAKE_INSTALL_PREFIX}/include )
+   PUBLIC "$<INSTALL_INTERFACE:include>"
+)
 
-target_link_libraries(a PRIVATE b)
+install(TARGETS a EXPORT alib-targets 
+        ARCHIVE DESTINATION lib )
 
-install(TARGETS a ARCHIVE DESTINATION lib )
 install(FILES a.h DESTINATION include)
-
+install(EXPORT alib-targets DESTINATION lib)
