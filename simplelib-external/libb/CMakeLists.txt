@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8.11)
+add_library(b lib.cpp)
+target_include_directories( b PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+install(TARGETS b ARCHIVE DESTINATION lib )
+install(FILES b.h DESTINATION include)
