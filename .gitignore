@@ -3,5 +3,8 @@ CMakeFiles
 Makefile
 cmake_install.cmake
 install_manifest.txt
+<<<<<<< HEAD
 build/
 Build/
+=======
+>>>>>>> 50f134775764d766e87f5f31fda247f2c567488d
