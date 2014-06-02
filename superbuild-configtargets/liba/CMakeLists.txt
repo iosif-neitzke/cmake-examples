@@ -1,25 +1,31 @@
 cmake_minimum_required(VERSION 2.8.11)
+include(CMakePackageConfigHelpers)
 
-include("${CMAKE_INSTALL_PREFIX}/lib/libbTargets.cmake")
-#find_package(libb NO_MODULE REQUIRED)
+find_package(libb NO_MODULE REQUIRED)
 
 add_library(a lib.cpp)
 
 # add link dependency so cmake knows about the dependency 
-# and includes 'b' interface files, it should also percolate up to 
-# the app folder
-#
-# The include directory could be manually added with
-# $<TARGET_PROPERTY:b,INTERFACE_INCLUDE_DIRECTORIES>  
-#
 target_link_libraries(a b)
 
 target_include_directories(a 
    PUBLIC "$<INSTALL_INTERFACE:include>"
 )
 
-install(TARGETS a EXPORT alib-targets 
+install(TARGETS a 
+	    EXPORT libaTargets 
         ARCHIVE DESTINATION lib )
 
+install(EXPORT libaTargets DESTINATION lib/cmake/liba)
+
 install(FILES a.h DESTINATION include)
-install(EXPORT alib-targets DESTINATION lib)
+
+#create relocateable config file
+configure_package_config_file (
+   libaConfig.cmake.in libaConfig.cmake
+   INSTALL_DESTINATION  ${CMAKE_INSTALL_PREFIX}/lib/cmake/liba)
+
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libaConfig.cmake"
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/cmake/liba )
+
+
