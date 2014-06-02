@@ -29,8 +29,5 @@ ExternalProject_Add(
    SOURCE_DIR ${CMAKE_SOURCE_DIR}/libc
 )
 
-add_dependencies(app a)
+add_dependencies(app a c)
 add_dependencies(a b)
-add_dependencies(b c)
-
-

@@ -11,4 +11,4 @@ add_library(c libc/lib.cpp)
 target_include_directories(c PUBLIC libc)
 
 add_executable(finally main.cpp )
-target_link_libraries(finally PRIVATE a )
+target_link_libraries(finally PRIVATE a c )
