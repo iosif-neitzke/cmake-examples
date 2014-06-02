@@ -1,0 +1,3 @@
+@PACKAGE_INIT@
+#set_and_check(LIBC_INCLUDE_DIR "@PACKAGE_INCLUDE_PATH@")
+include("${CMAKE_CURRENT_LIST_DIR}/libcTargets.cmake")
