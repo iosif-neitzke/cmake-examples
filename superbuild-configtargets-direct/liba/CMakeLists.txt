@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 2.8.11)
-include(CMakePackageConfigHelpers)
 
 find_package(libb NO_MODULE REQUIRED)
 
@@ -18,4 +17,3 @@ install(EXPORT libaConfig
    DESTINATION lib/cmake/liba)
 
 install(FILES a.h DESTINATION include)
-

@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 2.8.11)
-include(CMakePackageConfigHelpers)
 
 add_library(b lib.cpp)
 
@@ -13,5 +12,3 @@ install(EXPORT libbConfig
    DESTINATION lib/cmake/libb/)
 
 install(FILES b.h DESTINATION include)
-
-
